@@ -1,6 +1,5 @@
 import React from 'react'
 import { Box, Button, Typography } from '@mui/material';
-const background_video = require('../assets/background_video.mp4')
 
 const Home = () => {
     return (
@@ -24,7 +23,7 @@ const Home = () => {
             }}
           >
             <video
-              src={background_video}
+              src={process.env.PUBLIC_URL + '/assets/background_video.mp4'}
               autoPlay
               muted
               loop
