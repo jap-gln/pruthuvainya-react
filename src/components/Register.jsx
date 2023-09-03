@@ -56,14 +56,21 @@ function Copyright(props) {
             <Avatar
               sx={{
                 position: "relative",
-                bgcolor: "green",
+                bgcolor: "transparent",
                 width: 56,
                 height: 56,
                 margin: "0 auto",
                 top: "3%",
               }}
             >
-              Logo
+              <img
+              src={process.env.PUBLIC_URL + '/assets/logo.png'}
+              alt="Logo"
+              style={{
+                maxWidth: "60px",
+                maxHeight: "60px",
+              }}
+            />
             </Avatar>
             <Box component="form" noValidate sx={{ mt: 1, padding: "20px", display: 'flex', flexDirection: 'column',
               alignItems: 'center' }}>

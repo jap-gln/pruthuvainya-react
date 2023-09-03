@@ -3,21 +3,22 @@ import {
   AppBar,
   Toolbar,
   Box,
-  Typography,
   Button,
   IconButton,
   SwipeableDrawer,
   List,
   ListItemButton,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  ThemeProvider
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import HomeIcon from '@mui/icons-material/Home';
-import InfoIcon from '@mui/icons-material/Info';
-import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
+import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
+import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import GlobalTheme from "./GlobalTheme";
 
 const Navbar = () => {
   const isMaximized = useMediaQuery("(min-width:900px)");
@@ -39,22 +40,28 @@ const Navbar = () => {
     setOpen(openStatus);
   };
   return (
+    <ThemeProvider theme={GlobalTheme}>
     <Box sx={{ width: "100%" }}>
       <AppBar
         position="static"
-        sx={{ backgroundColor: "transparent", alignItems: "center" }}
+        sx={{ backgroundColor: "white", alignItems: "center" }}
       >
         <Toolbar sx={{ width: "85%", justifyContent: "space-between" }}>
           <IconButton
-            size="large"
+            href="/"
+            size="small"
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
           >
-            <Typography component="div" sx={{ color: "#000" }}>
-              Logo
-            </Typography>
+            <img
+              src={process.env.PUBLIC_URL + '/assets/logo.png'}
+              alt="Logo"
+              style={{
+                maxWidth: "60px",
+                maxHeight: "60px",
+              }}
+            />
           </IconButton>
           <Box
             width="50%"
@@ -63,9 +70,13 @@ const Navbar = () => {
               justifyContent: "space-between",
             }}
           >
-            <Button sx={{ color: "#000" }} href="/" >Home</Button>
-            <Button sx={{ color: "#000" }} href="/about">About Us</Button>
-            <Button sx={{ color: "#000" }} >Services</Button>
+            <Button sx={{ color: "#000" }} href="/">
+              Home
+            </Button>
+            <Button sx={{ color: "#000" }} href="/about">
+              About Us
+            </Button>
+            <Button sx={{ color: "#000" }}>Services</Button>
             <Button
               variant="contained"
               sx={{
@@ -104,76 +115,94 @@ const Navbar = () => {
               style: {
                 xs: "block",
                 md: "none",
-              }
+              },
             }}
           >
             {/* Drawer content goes here */}
-            <IconButton sx ={{width: "40px",
-                height: "40px",
-                borderRadius: "4px"}}>
+            <IconButton
+              sx={{ width: "40px", height: "40px", borderRadius: "4px" }}
+            >
               <ArrowBackIcon
                 onClick={toggleDrawer(false)}
                 sx={{ color: "#000" }}
               />
             </IconButton>
             <Box style={{ width: 250 }}>
-            <List
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      component="nav"
-    > 
-      <ListItemButton sx={{borderBottom: '1px solid',
-    boxShadow: '0px 5px 4px rgba(0, 0, 0, 0.1)'}}>
-        <ListItemIcon >
-          <HomeIcon />
-        </ListItemIcon>
-        <ListItemText primary="Home" />
-      </ListItemButton>
-      <ListItemButton sx={{borderBottom: '1px solid',
-    boxShadow: '0px 5px 4px rgba(0, 0, 0, 0.1)'}}>
-        <ListItemIcon >
-          <InfoIcon />
-        </ListItemIcon>
-        <ListItemText primary="About Us" />
-      </ListItemButton>
-      <ListItemButton sx={{borderBottom: '1px solid',
-    boxShadow: '0px 5px 4px rgba(0, 0, 0, 0.1)'}}>
-        <ListItemIcon >
-          <MiscellaneousServicesIcon />
-        </ListItemIcon>
-        <ListItemText primary="Services" />
-      </ListItemButton>
-    </List>
-    <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center', // Align the "Login" button to the center horizontally
-            marginTop: 2, // Add some margin to separate the button from the list
-          }}
-        >
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: '#367E18',
-              '&:hover': { backgroundColor: '#367E18' },
-              width: '100%', // Set the button width to fill the parent container
-            }}
-          >
-            Login / SignUp
-          </Button>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center', // Align the "Login" button to the center horizontally
-            marginTop: 2, // Add some margin to separate the button from the list
-          }}
-        >
-        </Box>
+              <List
+                sx={{
+                  width: "100%",
+                  maxWidth: 360,
+                  bgcolor: "background.paper",
+                }}
+                component="nav"
+              >
+                <ListItemButton 
+                  href="/"
+                  sx={{
+                    borderBottom: "1px solid",
+                    boxShadow: "0px 5px 4px rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  <ListItemIcon>
+                    <HomeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Home" />
+                </ListItemButton>
+                <ListItemButton
+                  sx={{
+                    borderBottom: "1px solid",
+                    boxShadow: "0px 5px 4px rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  <ListItemIcon>
+                    <InfoIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="About Us" />
+                </ListItemButton>
+                <ListItemButton
+                  sx={{
+                    borderBottom: "1px solid",
+                    boxShadow: "0px 5px 4px rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  <ListItemIcon>
+                    <MiscellaneousServicesIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Services" />
+                </ListItemButton>
+              </List>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center", // Align the "Login" button to the center horizontally
+                  marginTop: 2, // Add some margin to separate the button from the list
+                }}
+              >
+                <Button
+                  href="/login"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "#367E18",
+                    "&:hover": { backgroundColor: "#367E18" },
+                    width: "100%", // Set the button width to fill the parent container
+                  }}
+                >
+                  Login / SignUp
+                </Button>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center", // Align the "Login" button to the center horizontally
+                  marginTop: 2, // Add some margin to separate the button from the list
+                }}
+              ></Box>
             </Box>
           </SwipeableDrawer>
         </Toolbar>
       </AppBar>
     </Box>
+    </ThemeProvider>
   );
 };
 
