@@ -3,11 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { GlobalTheme } from './components';
+import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material';
+
+let fontTheme = createTheme();
+fontTheme = responsiveFontSizes(fontTheme);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={GlobalTheme}>
+      <ThemeProvider theme={fontTheme}>
+        <App />
+      </ThemeProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
 

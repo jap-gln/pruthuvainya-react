@@ -10,7 +10,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  ThemeProvider
+  Typography
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -18,16 +18,17 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import GlobalTheme from "./GlobalTheme";
 
 const Navbar = () => {
   const isMaximized = useMediaQuery("(min-width:900px)");
+
   const [open, setOpen] = useState(false);
   useEffect(() => {
     if (isMaximized) {
       setOpen(false); // Close the drawer when the screen is maximized
     }
   }, [isMaximized]);
+
   const toggleDrawer = (openStatus) => (event) => {
     if (
       event &&
@@ -40,11 +41,10 @@ const Navbar = () => {
     setOpen(openStatus);
   };
   return (
-    <ThemeProvider theme={GlobalTheme}>
     <Box sx={{ width: "100%" }}>
       <AppBar
         position="static"
-        sx={{ backgroundColor: "white", alignItems: "center" }}
+        sx={{ background: "linear-gradient(0deg, rgba(18,11,4,1) 0%, rgba(54,24,1,1) 100%)", alignItems: "center", color: "#fff" }}
       >
         <Toolbar sx={{ width: "85%", justifyContent: "space-between" }}>
           <IconButton
@@ -64,19 +64,19 @@ const Navbar = () => {
             />
           </IconButton>
           <Box
-            width="50%"
+            width="60%"
             sx={{
               display: { md: "flex", xs: "none" },
               justifyContent: "space-between",
             }}
           >
-            <Button sx={{ color: "#000" }} href="/">
-              Home
+            <Button sx={{ color: "#fff" }} href="/">
+              <Typography variant="subtitle2">Home</Typography> 
             </Button>
-            <Button sx={{ color: "#000" }} href="/about">
-              About Us
+            <Button sx={{ color: "#fff" }} href="/about">
+            <Typography variant="subtitle2">About Us</Typography>
             </Button>
-            <Button sx={{ color: "#000" }}>Services</Button>
+            <Button sx={{ color: "#fff" }}><Typography variant="subtitle2">Services</Typography></Button>
             <Button
               variant="contained"
               sx={{
@@ -85,14 +85,15 @@ const Navbar = () => {
               }}
               href="/login"
             >
-              Login / SignUp
+              <Typography variant="subtitle2">Login / SignUp</Typography>
             </Button>
           </Box>
           <IconButton
             size="medium"
-            edge="false"
+            edge={false}
             color="inherit"
             aria-label="menu"
+            onClick={toggleDrawer(true)}
             sx={{
               display: {
                 xs: "block",
@@ -102,9 +103,8 @@ const Navbar = () => {
                 borderRadius: "4px",
               },
             }}
-            onClick={toggleDrawer(true)}
           >
-            <MenuIcon sx={{ color: "#000" }} />
+            <MenuIcon sx={{ color: "#fff" }} />
           </IconButton>
           <SwipeableDrawer
             anchor="right" // You can change this to 'right', 'top', or 'bottom'
@@ -120,10 +120,10 @@ const Navbar = () => {
           >
             {/* Drawer content goes here */}
             <IconButton
+              onClick={toggleDrawer(false)}
               sx={{ width: "40px", height: "40px", borderRadius: "4px" }}
             >
               <ArrowBackIcon
-                onClick={toggleDrawer(false)}
                 sx={{ color: "#000" }}
               />
             </IconButton>
@@ -202,7 +202,6 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
     </Box>
-    </ThemeProvider>
   );
 };
 

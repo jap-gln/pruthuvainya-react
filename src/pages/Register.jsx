@@ -28,7 +28,7 @@ function Copyright(props) {
     const [isHovered, setIsHovered] = useState(false);
   
     return (
-      <Box sx={{ height: "700px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+      <Box sx={{ height: "720px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
         <Box sx={{ position: "absolute", top: "10px", left: "10px", zIndex: 1 }}>
           <IconButton sx={{ width: "40px", height: "40px", borderRadius: "4px" }} href="/login">
             <ArrowBackIcon sx={{ color: "#000" }} />
@@ -129,7 +129,7 @@ function Copyright(props) {
           </Paper>
         </Box>
           
-          <Copyright sx={{ mt: 2, mb: 5 }} />
+          <Copyright sx={{ mt: 2, mb: 10 }} />
       </Box>
     );
   };

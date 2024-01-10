@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Navbar, Home, About, Login, Register } from "./components";
+import { Navbar, Home, About, Login, Register, CardSlider } from "./components";
 
 const Navigation = () => {
-  const hideNavbarRoutes = ['/login', '/register'];
+  const hideNavbarRoutes = ['/login', '/register', '/cardslider'];
 
   return (
     <BrowserRouter>
@@ -13,6 +13,7 @@ const Navigation = () => {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/cardslider" element={<CardSlider />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
-const GlobalTheme = createTheme({
+let GlobalTheme = createTheme({
     breakpoints: {
       values: {
         xs: 0,  // Default breakpoints
@@ -10,6 +10,12 @@ const GlobalTheme = createTheme({
         xl: 1920,
       },
     },
+    typography: {
+      fontFamily: [
+        "Arial",
+        "sans-serif"
+      ].join(",")
+    }
   });
 
 export default GlobalTheme
